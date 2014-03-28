@@ -9,7 +9,7 @@ def new
 end
 
 def create
-	@product = Product.create params[:product].permit(:ProductName, :quantity, :price)
+	@product = Product.create params[:product].permit(:ProductName, :quantity, :price, :image_url)
 	redirect_to '/products'
 end
 
