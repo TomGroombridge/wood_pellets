@@ -16,9 +16,6 @@ end
 def show
 end
 
-  def is_path?(*paths)
-  paths.include?(request.path)
-	end
 
 
 
