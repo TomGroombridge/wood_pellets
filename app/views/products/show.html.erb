@@ -1,0 +1,163 @@
+<!-- HTML Select Junior Example 0.5                                                           -->
+<!-- Please note the code on these pages are provided by WorldPay as working examples only.   -->
+<!-- Any changes you make to the copies of these pages will not be supported by WorldPay.     -->
+<!-- For further information on reading html see the supplied help section.                   -->
+
+<html>
+<!-- The name, style, and properties of the page are defined in the 'head' tags. -->
+<head>
+	<title>Junior Example 0.5</title>
+	<meta http-equiv="Content-type" content="text/html">
+	<meta name="description" content="Junior HTML Example 0.5">
+	<meta name="keywords" content="Junior, html">
+	<style type="text/css"> td {text-align:"left"; vertical-align:"middle"; font-family:"arial"; color:"black"} h1,h2,h3,h4,h5,h6,h7 {text-align:"center"; vertical-align:"middle"; font-family:"arial"; color:"black"}</style>
+</head>
+
+<!-- The content to be used on the page is placed between the 'body' tags. -->
+<body>
+
+<!-- This is a purchase token, for more information on the elements with in a purchase token see the supplied help section. -->
+<!-- PLEASE NOTE: this is a test installation and values will require changing to reflect merchants requirements -->
+<form action="https://secure-test.worldpay.com/wcc/purchase" method=post name=form>
+<input type="hidden" name="instId" value="211616"><!-- The "instId" value "211616" should be replaced with the Merchant's own installation Id -->
+<input type="hidden" name="cartId" value="abc123"><!-- This is a unique identifier for merchants use. Example: PRODUCT123 -->
+<input type="hidden" name="currency" value="GBP"><!-- Choose appropriate currency that you would like to use -->
+<input type="hidden" name="amount"  value="0">
+<input type="hidden" name="desc" value="Test order">
+<input type="hidden" name="testMode" value="100">
+<input type="hidden" name="M_recipient" value="test@test.com">
+<input type="hidden" name="M_subject" value="ORDER FROM WORLDPAY">
+<input type="hidden" name="M_sname">
+<input type="hidden" name="M_stel">
+<input type="hidden" name="M_saddress">
+<input type="hidden" name="M_spostcode">
+
+<!-- JavaScript is used to give functionality to some of the pages elements. -->
+<script language=JavaScript>
+
+<!-- This defines the fixed products price as an example. -->
+function price(x)
+{
+	document.form.amount.value = x;
+}
+
+</script>
+
+<h1>Customer Details</h1>
+
+<!-- A table displaying the fixed example product. -->
+<% if current_page?('/products/one') %>
+<table border="2" cellpadding="3" align="center">
+<tr>
+<td >Product 1</td>
+<td>Price: &pound;10.00
+</tr>
+</table>
+<% elsif current_page?('/products/two') %>
+<table border="2" cellpadding="3" align="center">
+<tr>
+<td >Product 1</td>
+<td>Price: &pound;100.00
+</tr>
+<% elsif current_page?('/products/three') %>
+<table border="2" cellpadding="3" align="center">
+<tr>
+<td >Product 1</td>
+<td>Price: &pound;1000.00
+</tr>
+<% else %>
+<table border="2" cellpadding="3" align="center">
+<tr>
+<td >Product 1</td>
+<td>Price: &pound;10000.00
+</tr>
+</table>
+<% end %>
+
+<br><br>
+
+<!-- The main table, with the two smaller tables inside: Customer details, and Shipping details. -->
+<table border="2" cellpadding="3" align="center">
+<tr>
+<td>
+	<table>
+	<tr>
+		<td colspan=2 align=center><b>Cardholder Details</b><br>(Required)<br><br></td>
+	</tr>
+	<!-- Each element in the table has its properties assigned. -->
+	<tr>
+		<td><p style=text-align:right>Name</p></td>
+		<td><input maxLength=40 name=name size=30></td>
+	</tr>
+	<tr>
+		<td><p style=text-align:right>Address</p></td>
+		<td><textarea cols=30 name=address rows=4></textarea></td>
+	</tr>
+	<tr>
+		<td><p style=text-align:right>Country</p></td>
+		<td><select name=country>
+		<option selected value="">
+		<p style=text-align:right>Please select country</p>
+		<!-- New countries can be added by copying and pasting one line, and giving it a new country and name and intial. -->
+							<option value=IE>Ireland
+							<option value=GB>United Kingdom
+
+	</select>
+	<tr>
+		<td><p style=text-align:right>Postcode/Zip code</p></td>
+		<td><input maxLength=12 name=postcode size=30></td>
+	</tr>
+	<tr>
+		<td><p style=text-align:right>Telephone</td>
+		<td><input maxLength=30 name=tel size=30></td>
+	</tr>
+	<tr>
+		<td><p style=text-align:right>Fax No.</p></td>
+		<td><input name=fax></td>
+	</tr>
+	<tr>
+		<td><p style=text-align:right>e-mail</p></td>
+		<td><input name=email></td>	</tr>
+	</table>
+
+</td><td style="vertical-align:top">
+	<table>
+	<tr>
+		<td colspan=2><b>Shipping Details</b><br>(Only complete if different from the Cardholder Details)<br><br></td>
+	</tr>
+	<tr>
+		<td><p style=text-align:right>Name</p></td> 
+		<td><input type="text" name="M_shipping_name" size=25></td>
+	</tr>
+	<tr>
+		<td><p style=text-align:right>Phone</p></td>
+		<td><input type="text" name="M_shipping_tel" size="18"></td>
+	</tr>
+	<tr>
+		<td><p style=text-align:right>Address</p></td>
+		<td><textarea name="M_shipping_address" cols="20" rows="7"></textarea></td>
+	</tr>
+	<tr>
+		<td><p style=text-align:right>Postcode</p></td>
+		<td><input type="text" name="M_shipping_postcode" size="8"></td>
+	</tr>
+	</table>
+</td>
+</tr>
+</table>
+
+<br><br>
+<!-- This generates a button that submits the information and sends the user to the Worldpay payment pages. -->
+<% if current_page?('/products/one') %>
+<p align="center"><input type=SUBMIT value="Pay By Secure WorldPay Server" onclick="price(10.00);"></p>
+<% elsif current_page?('/products/two') %>
+<p align="center"><input type=SUBMIT value="Pay By Secure WorldPay Server" onclick="price(100.00);"></p>
+<% elsif current_page?('/products/three') %>
+<p align="center"><input type=SUBMIT value="Pay By Secure WorldPay Server" onclick="price(1000.00);"></p>
+<% else %>
+<p align="center"><input type=SUBMIT value="Pay By Secure WorldPay Server" onclick="price(10000.00);"></p>
+<% end %>
+
+</form>
+</body>
+</html>

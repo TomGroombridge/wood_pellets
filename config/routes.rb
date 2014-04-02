@@ -1,7 +1,9 @@
 WoodPellets::Application.routes.draw do
 
 root "about#index"
-resources :products
+resources :products do
+ 
+end
 resources :about
 
 match '/contacts',     to: 'contacts#new',             via: 'get'

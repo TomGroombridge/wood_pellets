@@ -13,6 +13,13 @@ def create
 	redirect_to '/products'
 end
 
+def show
+end
+
+  def is_path?(*paths)
+  paths.include?(request.path)
+	end
+
 
 
 end
