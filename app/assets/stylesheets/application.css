@@ -12,6 +12,21 @@
  *= require_self
  *= require_tree .
  */
+.vid {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px; height: 0; overflow: hidden;
+}
+ 
+.vid iframe,
+.vid object,
+.vid embed {
+    position: absolute;
+    top: 0;
+    left: 40%;
+    width: 50%;
+    height: 50%;
+}
 
  .hidden { display: none; }
 
@@ -44,4 +59,13 @@ border-color: #d6e9c6;
 color: #468847;
 text-align: left;
 }
+
+
+
+.title {
+ text-align: center;
+ width: 50%
+}
+
+
 
